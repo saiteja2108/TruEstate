@@ -2,3 +2,6 @@ backend/data/*.db
 backend/data/*.db-shm 
 backend/data/*.db-wal 
 backend/data/sales.csv 
+/backend/data/*.db
+/backend/data/*.sqlite
+/backend/data/*.csv
