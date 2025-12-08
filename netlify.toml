@@ -1,6 +1,6 @@
 [build]
+  command = "npm --prefix frontend ci && npm --prefix frontend run build"
   publish = "frontend/dist"
-  command = "npm --prefix frontend run build"
 
 [dev]
   command = "npm run start:backend & npm --prefix frontend run dev"
