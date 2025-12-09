@@ -1,7 +1,8 @@
-const API_BASE_URL =
+const API_BASE =
   import.meta.env.VITE_API_URL ||
   import.meta.env.VITE_API_BASE_URL ||
-  'https://truestate-r3sf.onrender.com'; // fallback for production
+  'https://truestate-r3sf.onrender.com';
+
 
 function buildQuery(params = {}) {
   const qs = new URLSearchParams();
