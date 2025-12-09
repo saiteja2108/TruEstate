@@ -1,133 +1,66 @@
 
+---
 
-📊 TruEstate Retail Sales Analytics – Assignment Submission
+# TruEstate Retail Sales Analytics – Assignment Submission
 
-This repository contains the complete implementation of the Retail Sales Analytics Dashboard assigned by TruEstate.
-The solution includes:
-
-A Node.js + Express backend API with SQLite
-
-A React + Vite frontend dashboard
-
-A sales database importer to generate a structured and indexed SQLite database
-
-Fully deployed frontend and backend with environment-based configuration
-
-
-This README documents the architecture, setup steps, API details, and deployment information for the assignment.
-
+This repository contains the complete solution for the **Retail Sales Analytics Dashboard Assignment** provided by **TruEstate**.  
+It includes a fully functional backend API, a modern frontend dashboard, and a structured SQLite database generated from the provided CSV data.
 
 ---
 
-🔗 Deployment Links
+## 1. Deployment Links
 
-Frontend (Netlify)
-
+### Frontend (Netlify)  
 https://truestate-assignmnt.netlify.app/
 
-Backend API (Render)
-
+### Backend API (Render)  
 https://truestate-r3sf.onrender.com/api/sales
 
+---
+
+## 2. Assignment Requirements Covered
+
+- Retail sales analytics dashboard  
+- Filters for region, gender, product category, payment method, and date  
+- Sorting and pagination  
+- Summary statistics (total sales, units sold, discount, etc.)  
+- Backend API with Express and SQLite  
+- CSV → SQLite database generation script  
+- Fully deployed backend and frontend  
+- Environment-based configuration  
+- Proper folder structure and documentation
 
 ---
 
-📝 Assignment Requirements Covered
+## 3. System Architecture
 
-✔️ Build a functional dashboard for retail sales analysis
-
-✔️ Implement filters (region, category, gender, payment method, date)
-
-✔️ Implement pagination and sorting
-
-✔️ Display summary cards (total units, revenue, discount etc.)
-
-✔️ Create a backend API with SQLite database
-
-✔️ Import CSV data into a structured DB
-
-✔️ Deploy both frontend and backend
-
-✔️ Provide clear documentation
-
+Frontend (React + Vite)  →  Netlify Hosting | | API Requests v Backend (Node.js + Express + SQLite) → Render Hosting
 
 ---
 
-🧩 System Architecture
+## 4. Repository Structure
 
-┌───────────────────────┐
-│   React + Vite UI     │  ← Netlify Hosting
-│   (Frontend)          │
-└───────────┬───────────┘
-            │ API Calls
-            ▼
-┌───────────────────────┐
-│ Node.js + Express API │  ← Render Hosting
-│ SQLite (sales.db)     │
-└───────────────────────┘
-
+TruEstate/ │ ├── backend/ │   ├── src/ │   │   ├── index.js │   │   ├── routes/ │   │   ├── controllers/ │   │   ├── services/ │   │   └── utils/ │   ├── scripts/ │   │   └── import_csv_to_sqlite.js │   ├── data/ │   └── package.json │ ├── frontend/ │   ├── src/ │   │   ├── components/ │   │   ├── hooks/ │   │   ├── services/ │   │   └── pages/ │   ├── vite.config.js │   └── package.json │ └── README.md
 
 ---
 
-📁 Repository Structure
+## 5. Backend (Express + SQLite)
 
-TruEstate/
-│
-├── backend/
-│   ├── src/
-│   │   ├── index.js          → Main server entry
-│   │   ├── routes/           → API routes
-│   │   ├── controllers/      → Request handlers
-│   │   ├── services/         → Business logic
-│   │   └── utils/            → Database utilities
-│   ├── scripts/
-│   │   └── import_csv_to_sqlite.js → CSV → SQLite importer
-│   ├── data/                 → Generated sales.db
-│   └── package.json          
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/       → UI components
-│   │   ├── hooks/            → useSales hook
-│   │   ├── services/         → API communication
-│   │   └── pages/            → Dashboard page
-│   ├── vite.config.js
-│   └── package.json
-│
-└── README.md
+### Features
+- `/api/sales` endpoint with:
+  - Region, gender, category, and payment filters  
+  - Date range support  
+  - Sorting support  
+  - Pagination  
+- Automated DB initialization:
+  - Downloads `sales-db.zip` from GitHub Release  
+  - Extracts using `unzipper`  
+  - Loads database into SQLite  
+- CSV importer to build indexed database
 
+### Local Setup
 
----
-
-🔧 Backend (Express + SQLite)
-
-Key Features
-
-/api/sales endpoint supports:
-
-Filtering (region, gender, category, payment method)
-
-Date range
-
-Sorting
-
-Pagination
-
-
-DB auto-initializes on server start:
-
-Downloads sales-db.zip from GitHub Release
-
-Unzips using unzipper
-
-Loads SQLite DB
-
-
-CSV import script generates optimized database with indexes
-
-
-Local Setup
-
+```bash
 cd backend
 npm install
 node scripts/import_csv_to_sqlite.js data/sales.csv data/sales.db
@@ -139,26 +72,26 @@ http://localhost:4000/api/sales
 
 Environment Variables (Render)
 
-SALES_DB_URL = <GitHub Release URL for sales-db.zip>
+SALES_DB_URL=<GitHub Release URL to sales-db.zip>
 
 
 ---
 
-🎨 Frontend (React + Vite)
+6. Frontend (React + Vite)
 
-Key Features
+Features
 
-Clean and responsive dashboard interface
+Clean, responsive dashboard UI
 
-Summary cards
+Summary cards and analytics
 
-Filters and search
+Filters with instant update
 
-Table with pagination and sorting
+Paginated and sortable data table
 
-Loading states + error handling
+API communication via environment variables
 
-Auto-configured connection to backend API
+Loading and error handling states
 
 
 Local Setup
@@ -178,57 +111,46 @@ VITE_API_URL=https://truestate-r3sf.onrender.com
 
 ---
 
-🔄 CSV → SQLite Importer
+7. CSV → SQLite Importer
 
-Reads retail sales CSV
+The importer script:
 
-Normalizes data
+Reads the CSV file
+
+Normalizes and cleans data
 
 Creates sales table
 
 Inserts rows in batches for performance
 
-Adds multiple indexes:
-
-date
-
-region
-
-category
-
-payment method
-
-gender
+Creates indexes for faster filtering and sorting
 
 
-Outputs sales.db, then compressed to sales-db.zip for deployment
-
-
-Usage:
+Run manually:
 
 node scripts/import_csv_to_sqlite.js input.csv output.db
 
 
 ---
 
-📡 API Specification
+8. API Specification
 
 GET /api/sales
 
-Query Parameters:
+Query Parameters
 
 Name	Type	Description
 
 region	string	Region filter or "all"
 gender	string	Gender filter or "all"
 category	string	Product category or "all"
-paymentMethod	string	Payment option or "all"
+paymentMethod	string	Payment method filter or "all"
 sort	string	date_asc or date_desc
 page	number	Page number
 perPage	number	Items per page
 
 
-Response:
+Sample Response
 
 {
   "meta": {
@@ -242,10 +164,11 @@ Response:
   "data": [
     {
       "id": 1,
-      "date": "2023-01-05",
-      "customer_name": "...",
-      "product_name": "...",
-      ...
+      "date": "2023-01-10",
+      "customer_name": "John Doe",
+      "product_name": "Product A",
+      "quantity": 2,
+      "final_amount": 1200
     }
   ]
 }
@@ -253,49 +176,51 @@ Response:
 
 ---
 
-🚀 Deployment Summary
+9. Deployment Details
 
-Backend (Render)
+Render – Backend
 
-Auto-builds from GitHub
+Auto builds from GitHub
 
-Downloads DB from GitHub Release on boot
+Downloads & extracts SQLite DB on startup
 
-Exposes API publicly
+Node.js environment with Express
 
-Cold start delays possible on free tier
+Cold-start delays may occur on free tier
 
 
-Frontend (Netlify)
+Netlify – Frontend
 
 Builds using Vite
 
-Fetches data from deployed backend
+Connects to backend via environment variables
 
-Environment-based API URL
-
-
-
----
-
-📝 Notes for Reviewers
-
-This implementation is fully functional and meets all assignment requirements.
-
-Backend cold-start delays may occur due to free-tier hosting.
-
-All filters, sorting, and pagination operate on indexed SQLite queries for reliable performance.
-
-The dashboard UI is optimized for clarity and usability.
+Continuous deployment enabled
 
 
 
 ---
 
-📬 Contact (if required)
+10. Notes for Reviewers
 
-For any clarification regarding the assignment implementation:
+This is the official assignment submission for TruEstate.
+
+All required features have been fully implemented.
+
+Backend cold-start delay is expected due to free-tier hosting.
+
+Database is optimized with indexes for better query performance.
+
+The code follows modular structure and clean separation of concerns.
+
+
+
+---
+
+11. Contact (If Clarification is Needed)
 
 A V S Sai Teja
 Bhubaneswar, Odisha
 Email: saiteja00121@gmail.com
+
+---
