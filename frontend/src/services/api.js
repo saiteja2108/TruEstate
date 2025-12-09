@@ -1,4 +1,7 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://truestate-r3sf.onrender.com'; // fallback for production
 
 function buildQuery(params = {}) {
   const qs = new URLSearchParams();
